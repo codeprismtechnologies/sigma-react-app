@@ -1,0 +1,191 @@
+{
+  "attributes": {},
+  "nodes": [
+    {
+      "key": "171",
+      "id": "1",
+      "x": 20,
+      "y": -10,
+      "cluster": "0",
+      "score": 0.00006909602204225056,
+      "attributes": {
+        "name": "Emil",
+        "from": "Sweden",
+        "kloutScore": {
+          "low": 99,
+          "high": 0
+        }
+      }
+    },
+    {
+      "id": "2",
+      "key": "172",
+      "x": 40,
+      "y": -90,
+      "cluster": "1",
+      "score": 0.0018317394731443256,
+      "attributes": {
+        "learn": "surfing",
+        "name": "Johan",
+        "from": "Sweden"
+      }
+    },
+    {
+      "id": "3",
+      "key": "173",
+      "x": 60,
+      "y": 20,
+      "cluster": "2",
+      "score": 0.0010242079745792347,
+      "attributes": {
+        "name": "Ian",
+        "from": "England",
+        "title": "author"
+      }
+    },
+    {
+      "id": "4",
+      "key": "174",
+      "x": 242,
+      "y": 150,
+      "cluster": "1",
+      "score": 0.0000049571249591405295,
+      "attributes": {
+        "name": "Rik",
+        "from": "Belgium",
+        "pet": "Orval"
+      }
+    },
+    {
+      "id": "5",
+      "key": "175",
+      "x": 219,
+      "y": 85,
+      "cluster": "2",
+      "score": 0.0000049571249591405295,
+      "attributes": {
+        "name": "Nice",
+        "from": "Belgium",
+        "pet": "Orval"
+      }
+    },
+    {
+      "id": "6",
+      "key": "176",
+      "x": 151,
+      "y": 225,
+      "cluster": "0",
+      "score": 0.0000049571249591405295,
+      "attributes": {
+        "name": "Weef",
+        "from": "Belgium",
+        "pet": "Krap"
+      }
+    },
+    {
+      "id": "7",
+      "key": "177",
+      "x": 79,
+      "y": 222,
+      "cluster": "2",
+      "score": 0.0000049571249591405295,
+      "attributes": {
+        "name": "Wolf",
+        "from": "Kill",
+        "pet": "Lpil"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "key": 253,
+      "source": "171",
+      "target": "172",
+      "type": "KNOWS",
+      "x": 2.903728443458573,
+      "y": 10,
+      "attributes": {
+        "since": {
+          "low": 2001,
+          "high": 0
+        }
+      }
+    },
+    {
+      "key": 254,
+      "source": "171",
+      "target": "173",
+      "type": "KNOWS",
+      "attributes": {
+        "rating": {
+          "low": 5,
+          "high": 0
+        }
+      },
+      "undirected": true
+    },
+    {
+      "key": 256,
+      "source": "172",
+      "target": "174",
+      "type": "KNOWS",
+      "attributes": {},
+      "undirected": true
+    },
+    {
+      "key": 255,
+      "source": "172",
+      "target": "173",
+      "type": "KNOWS",
+      "attributes": {},
+      "undirected": true
+    },
+    {
+      "key": 257,
+      "source": "173",
+      "target": "172",
+      "type": "KNOWS",
+      "attributes": {},
+      "undirected": true
+    },
+    {
+      "key": 257,
+      "source": "175",
+      "target": "177",
+      "type": "KNOWS",
+      "attributes": {},
+      "undirected": true
+    },
+    {
+      "key": 257,
+      "source": "176",
+      "target": "172",
+      "type": "KNOWS",
+      "attributes": {},
+      "undirected": true
+    },
+    {
+      "key": 257,
+      "source": "171",
+      "target": "175",
+      "type": "KNOWS",
+      "attributes": {},
+      "undirected": true
+    }
+  ],
+  "clusters": [
+    { "key": "0", "color": "#6c3e81", "clusterLabel": "McGregor" },
+    { "key": "1", "color": "#666666", "clusterLabel": "Patrick" },
+    { "key": "2", "color": "#57a835", "clusterLabel": "Rand" },
+    {
+      "key": "3",
+      "color": "#7145cd",
+      "clusterLabel": "Kevin"
+    }
+  ],
+  "options": {
+    "type": "undirected",
+    "multi": true,
+    "allowSelfLoops": true
+  }
+}
