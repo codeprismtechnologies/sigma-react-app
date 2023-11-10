@@ -324,12 +324,12 @@ ul > li {
     min-height: 3em;
   }
   #app-root.show-contents .contents .hide-contents {
-    position: absolute;
+    position: relative;
     top: var(--stage-padding);
     right: var(--stage-padding);
     width: 768px;
     height: 1280px;
-    z-index: 1000;
+    z-index: 1;
   }
 }
 @media (min-width: 768px) {

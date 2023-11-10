@@ -30,10 +30,14 @@ const GraphController: React.FunctionComponent<GraphControllerProps> = (
     );
     //@ts-ignore
     props.data.edges.forEach((element: any) =>
-      graph.addEdge(element.source, element.target, { size: 2, label: "A" })
+      graph.addEdge(element.source, element.target, {
+        size: 2,
+        label: "Some label",
+      })
     );
 
     graph.forEachNode((node) => graph.setNodeAttribute(node, "size", 30));
+    // graph.forEachNode((node) => graph.setNodeAttribute(node, "name", "A"));
 
     return () => graph.clear();
   }, [graph, props.data]);

@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Graph from "react-sigma-graph";
 import getNodeProgramImage from "sigma/rendering/webgl/programs/node.image";
 import { MultiDirectedGraph } from "graphology";
-import { SigmaContainer } from "react-sigma-v2";
+import { ForceAtlasControl, SigmaContainer } from "react-sigma-v2";
 import GraphController from "./GraphController";
 import GraphEventsController from "./GraphEventsController";
 import GraphSettingsController from "./GraphSettingsController";
@@ -11,17 +11,17 @@ import api from "../api/api";
 import drawLabel from "../utils/canvas_utils";
 import { getParsedRenderData } from "../utils/render_utils";
 import { exportGEXF } from "../utils/gexf_utils";
+import ForceAtlas2 from "react-sigma-v2";
 
 // Define the props for your component
 interface GraphRendererProps {
-  data: any; // Replace 'any' with the actual data type
+  selectedOption: string;
 }
 
-const GraphRenderer: React.FC<GraphRendererProps> = ({ data }) => {
+const GraphRenderer: React.FC<GraphRendererProps> = (props) => {
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
   const [showContents, setShowContents] = useState(false);
   const [queryData, setQueryData] = useState([]);
-  //"MATCH (m:Movie)-[r:ACTED_IN]-(p:Person) RETURN m,r,p"
 
   useEffect(() => {
     const headers = {
@@ -32,8 +32,7 @@ const GraphRenderer: React.FC<GraphRendererProps> = ({ data }) => {
       .post(
         "/movies",
         {
-          cipherQuery:
-            "MATCH (m:Movie)-[r:DIRECTED|WROTE|PRODUCED]-(p:Person) RETURN m, r, p",
+          cipherQuery: props.selectedOption,
         },
         { headers }
       )
@@ -48,14 +47,12 @@ const GraphRenderer: React.FC<GraphRendererProps> = ({ data }) => {
         console.log("gexf", gexf);
       })
       .catch((e) => {});
-  }, []);
+  }, [props.selectedOption]);
 
   return (
     <div id="app-root" className={showContents ? "show-contents" : ""}>
       <SigmaContainer
-        //@ts-ignore
-        graph={MultiDirectedGraph}
-        graphOptions={{ type: "directed" }}
+        graphOptions={{ type: "directed", multi: true }}
         initialSettings={{
           nodeProgramClasses: { image: getNodeProgramImage() },
           labelRenderer: drawLabel,
@@ -65,12 +62,31 @@ const GraphRenderer: React.FC<GraphRendererProps> = ({ data }) => {
           labelGridCellSize: 60,
           labelRenderedSizeThreshold: 15,
           labelFont: "Lato, sans-serif",
-          zIndex: false,
+          zIndex: true,
         }}
         className="react-sigma"
       >
         <GraphSettingsController hoveredNode={hoveredNode} />
         <GraphEventsController setHoveredNode={setHoveredNode} />
+        <ForceAtlasControl
+          autoRunFor={2000}
+          settings={{
+            weighted: true,
+            settings: {
+              barnesHutOptimize: true,
+              gravity: 20,
+              strongGravityMode: true,
+            },
+          }}
+        />
+
+        {/* <ForceAtlas2
+          iterationsPerRender={1}
+          barnesHutOptimize
+          barnesHutTheta={1}
+          timeout={50000}
+          worker
+        /> */}
         {showContents && <GraphController data={queryData} />}
       </SigmaContainer>
     </div>
